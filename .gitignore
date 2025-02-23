@@ -4,4 +4,4 @@ rag_docs
 rag_docs.zip
 src/app.py
 src/streamlit.py
-src/utils/helper
+src/utils/helper.py

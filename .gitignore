@@ -1,0 +1,6 @@
+src/logs
+.env
+rag_docs
+rag_docs.zip
+src/app.py
+src/streamlit.py

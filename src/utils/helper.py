@@ -6,10 +6,10 @@ from src.exception.operationhandler import system_logger
 
 allowed_files = ["txt", "csv", "json", "pdf", "doc", "docx", "pptx"]
 
-def _allowed_file(filename:str):
+def allowed_file(filename:str):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in allowed_files
 
-def _file_checks(files:str):
+def file_checks(files:str):
     if not files:
         return {
             "detail" : "No file found",
@@ -21,7 +21,7 @@ def _file_checks(files:str):
             "detail" : "No file found",
             "status_code" : 400
         }
-        if not _allowed_file(file.filename):
+        if not allowed_file(file.filename):
             return {
                 "detail": f"File format not supported. use any of {allowed_files}",
                 "status_code": 415
@@ -32,8 +32,8 @@ def _file_checks(files:str):
         "status_code": 200
     }
 
-async def _upload_files(files:str, temp_dir:Path):
-    checks = _file_checks(files)
+async def upload_files(files:str, temp_dir:Path):
+    checks = file_checks(files)
     if checks["status_code"] != 200:
         return checks
     try:

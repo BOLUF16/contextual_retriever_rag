@@ -84,8 +84,8 @@ class Chat:
             self.system_logger.error(f"Error creating contextual chunks: {str(e)}")
             raise
 
-    @property
-    def get_embeddings(self):
+    @static_method
+    def get_embeddings():
         """
         Initializes and returns the embedding model for text vectorization.
 
@@ -136,7 +136,7 @@ class Chat:
                 # Use Chroma for similarity-based retrieval
                 retriever = Chroma.from_documents(
                     documents=chunks,
-                    embedding=self.get_embeddings,
+                    embedding=self.get_embeddings(),
                     collection_name="similarity_collection",
                     collection_metadata={"hnsw:space": "cosine"}
                 ).as_retriever(search_kwargs={"k": 5})  # Retrieve top 5 similar documents
